@@ -1,0 +1,15 @@
+[package]
+name = "bevy-web-resizer"
+description = "Automatically resize your Bevy app on the web (wasm) to the size of the browser window"
+version = "0.1.0"
+edition = "2021"
+authors = ["Corey Farwell <coreyf@rwell.org>"]
+license = "MIT/Apache-2.0"
+repository = "https://github.com/frewsxcv/bevy-web-resizer"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+crossbeam-channel = "0.5"
+bevy = "0.6"
+wasm-bindgen = "0.2"
+web-sys = "0.3"
+winit = "0.26"
