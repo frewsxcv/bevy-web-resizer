@@ -8,7 +8,15 @@ mod wasm32 {
     use wasm_bindgen::JsCast;
     use winit::dpi::LogicalSize;
 
-    pub fn web_resize_system(
+    pub struct Plugin;
+
+    impl bevy::app::Plugin for Plugin {
+        fn build(&self, app: &mut App) {
+            app.add_system(web_resize_system);
+        }
+    }
+
+    fn web_resize_system(
         winit_windows: Res<WinitWindows>,
         web_resizing: Local<WinitWebResizing>,
     ) {
@@ -60,4 +68,4 @@ mod wasm32 {
 }
 
 #[cfg(target_arch = "wasm32")]
-pub use wasm32::web_resize_system;
+pub use wasm32::Plugin;
