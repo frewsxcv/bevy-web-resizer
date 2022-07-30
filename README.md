@@ -9,3 +9,5 @@ Automatically resize your Bevy app on the web (wasm) to the size of the browser 
 }
 ```
 
+Note: this functionality will be [built into Bevy in the next release](https://github.com/bevyengine/bevy/commit/fed93a0edce9d66586dc70c1207a2092694b9a7d).
+
