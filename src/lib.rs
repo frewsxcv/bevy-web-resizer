@@ -6,7 +6,7 @@ mod wasm32 {
     use bevy::winit::WinitWindows;
     use crossbeam_channel::Receiver;
     use wasm_bindgen::JsCast;
-    use winit::dpi::LogicalSize;
+    use winit::dpi::{Size, LogicalSize};
 
     pub struct Plugin;
 
@@ -17,11 +17,11 @@ mod wasm32 {
     }
 
     fn web_resize_system(
-        winit_windows: Res<WinitWindows>,
+        winit_windows: NonSend<WinitWindows>,
         web_resizing: Local<WinitWebResizing>,
     ) {
         let winit_window = winit_windows.get_window(WindowId::primary()).unwrap();
-        for size in web_resizing.rx.clone().try_iter().last() {
+        if let Some(size) = web_resizing.rx.clone().try_iter().last() {
             winit_window.set_inner_size(size);
         }
     }
